@@ -1,1 +1,6 @@
-<p>country-chooser works!</p>
+<form [formGroup]="form">
+  <label for="character">{{title}}</label> <br>
+  <input type="text" name="character" id="character" formControlName="character">
+</form>
+
+<app-country-item/>
