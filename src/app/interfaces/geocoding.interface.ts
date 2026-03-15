@@ -1,9 +1,9 @@
 export interface GeocodingResponse {
-    results:           Result[];
+    results:           GeocodingResponseResult[];
     generationtime_ms: number;
 }
 
-export interface Result {
+export interface GeocodingResponseResult {
     id:           number;
     name:         string;
     latitude:     number;
@@ -16,8 +16,8 @@ export interface Result {
     timezone:     string;
     population?:  number;
     postcodes?:   string[];
-    country_id:   number;
-    country:      string;
+    country_id?:   number;
+    country?:      string;
     admin1?:      string;
     admin2?:      string;
     admin3_id?:   number;

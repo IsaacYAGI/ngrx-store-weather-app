@@ -1,6 +1,16 @@
-<p-sidebar [(visible)]="sidebarVisible" position="right">
-    <app-country-chooser/>
+<p-sidebar
+  [visible]="(sidebarVisible$ | async) ?? false"
+  position="right"
+  [fullScreen]="true"
+  showCloseIcon="false"
+>
+  <ng-template pTemplate="header">
+    <div class="close-button">
+      <p-button (onClick)="hideSidebar()" icon="pi pi-times" severity="danger" />
+    </div>
+  </ng-template>
+  <app-country-chooser/>
 </p-sidebar>
-<h3>Current selected country:</h3> <p-button (onClick)="sidebarVisible = true" label="Select country" icon="pi pi-globe"/>
+<h3>Current selected country:</h3> <p-button (onClick)="showSidebar()" label="Select country" icon="pi pi-globe"/>
 
 <app-weather-info></app-weather-info>

@@ -4,6 +4,11 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { CountryChooserComponent } from './components/country-chooser/country-chooser.component';
 import { WeatherInfoComponent } from './components/weather-info/weather-info.component';
+import { AppState } from './state/app.state';
+import { Store } from '@ngrx/store';
+import { selectSidebarVisible } from './state/selectors/sidebar.selectors';
+import { AsyncPipe } from '@angular/common';
+import { hideSidebar, showSidebar } from './state/actions/sidebar.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +18,25 @@ import { WeatherInfoComponent } from './components/weather-info/weather-info.com
     SidebarModule,
     ButtonModule,
     CountryChooserComponent,
-    WeatherInfoComponent
+    WeatherInfoComponent,
+    AsyncPipe
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  sidebarVisible = false;
+  sidebarVisible$ = this.store.select(selectSidebarVisible);
   title = 'ngrx-store-weather-app';
+
+  constructor(private store: Store<AppState>){
+
+  }
+
+  showSidebar(){
+    this.store.dispatch(showSidebar())
+  }
+
+  hideSidebar(){
+    this.store.dispatch(hideSidebar())
+  }
 }
