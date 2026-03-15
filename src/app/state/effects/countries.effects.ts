@@ -10,21 +10,21 @@ export class CountriesEffects {
 
   loadCountries$ = createEffect(() => this.actions$.pipe(
     ofType(filterCountries),
-    mergeMap(({name}) => this.apiService.getCountriesByName(name)
+    mergeMap(({ name }) => this.apiService.getCountriesByName(name)
       .pipe(
         map(countries => (filterCountriesSuccess({ countries: countries.results }))),
         catchError(() => EMPTY)
       ))
-    )
+  )
   );
 
   selectedCountry$ = createEffect(() => this.actions$.pipe(
-      ofType(selectedCountry),
-      map(countrySelected => (weatherFetchData({latitude: countrySelected.country.latitude, longitude: countrySelected.country.longitude}))),
+    ofType(selectedCountry),
+    map(countrySelected => (weatherFetchData({ latitude: countrySelected.country.latitude, longitude: countrySelected.country.longitude }))),
   ));
 
   constructor(
     private actions$: Actions,
     private apiService: GeocodingService
-  ) {}
+  ) { }
 }

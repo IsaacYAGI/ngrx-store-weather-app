@@ -14,7 +14,7 @@ export class GeocodingService {
     private httpClient: HttpClient
   ) { }
 
-  getCountriesByName(name: string): Observable<GeocodingResponse>{
+  getCountriesByName(name: string): Observable<GeocodingResponse> {
     return this.httpClient.get<GeocodingResponse>(this.url + name)
   }
 }

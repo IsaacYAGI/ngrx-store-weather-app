@@ -30,15 +30,15 @@ export class AppComponent {
   selectedCountry$ = this.store.select(selectSelectedCountry);
   title = 'ngrx-store-weather-app';
 
-  constructor(private store: Store<AppState>){
+  constructor(private store: Store<AppState>) {
 
   }
 
-  showSidebar(){
+  showSidebar() {
     this.store.dispatch(showSidebar())
   }
 
-  hideSidebar(){
+  hideSidebar() {
     this.store.dispatch(hideSidebar())
   }
 }

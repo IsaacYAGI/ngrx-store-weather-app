@@ -26,7 +26,7 @@ export class WeatherInfoComponent {
   constructor(
     private store: Store<AppState>,
     public weatherService: WeatherService
-  ){
+  ) {
 
   }
 

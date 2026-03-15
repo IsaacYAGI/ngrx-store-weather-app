@@ -12,14 +12,14 @@ export class WeathersEffects {
     ofType(weatherFetchData),
     mergeMap((coords) => this.apiService.getWeatherByCoordinates(coords.latitude, coords.longitude)
       .pipe(
-        map(weather => (weatherFetchDataSuccess({weather}))),
+        map(weather => (weatherFetchDataSuccess({ weather }))),
         catchError(() => EMPTY)
       ))
-    )
+  )
   );
 
   constructor(
     private actions$: Actions,
     private apiService: WeatherService
-  ) {}
+  ) { }
 }

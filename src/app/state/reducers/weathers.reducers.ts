@@ -11,7 +11,5 @@ const initialState: WeathersState = {
 export const weathersReducer = createReducer(
   initialState,
   on(weatherFetchData, (state) => ({ ...state, loading: true })),
-  on(weatherFetchDataSuccess, (state, payload) => ({ ...state, loading: false, weather: payload.weather})),
-//   on(filterCountriesSuccess, (state, payload) => ({ ...state, loading: false, countries: payload.countries })),
-//   on(selectedCountry, (state, payload) => ({ ...state, selectedCountry: payload.country })),
+  on(weatherFetchDataSuccess, (state, payload) => ({ ...state, loading: false, weather: payload.weather })),
 );

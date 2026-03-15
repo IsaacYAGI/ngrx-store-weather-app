@@ -36,30 +36,30 @@ export class CountryChooserComponent {
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<AppState>
-  ){
+  ) {
     this.createForm()
     this.subscribeToForm()
   }
 
-  createForm(){
+  createForm() {
     this.form = this.formBuilder.group({
-      country:[""]
+      country: [""]
     })
   }
 
-  subscribeToForm(){
+  subscribeToForm() {
     this.form.valueChanges.pipe(
       debounceTime(1500),
       takeUntil(this.destroy$)
     )
-    .subscribe(value => {
-      this.onChangeInput.emit(value.country)
-      this.store.dispatch(filterCountries({name: value.country}))
-    })
+      .subscribe(value => {
+        this.onChangeInput.emit(value.country)
+        this.store.dispatch(filterCountries({ name: value.country }))
+      })
   }
 
-  onCountrySelected(country: TableRowSelectEvent){
-    this.store.dispatch(selectedCountry({country: country.data}))
+  onCountrySelected(country: TableRowSelectEvent) {
+    this.store.dispatch(selectedCountry({ country: country.data }))
     this.store.dispatch(hideSidebar())
   }
 
