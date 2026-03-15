@@ -53,14 +53,12 @@ export class CountryChooserComponent {
       takeUntil(this.destroy$)
     )
     .subscribe(value => {
-      console.log("To the parent:",value);
       this.onChangeInput.emit(value.country)
       this.store.dispatch(filterCountries({name: value.country}))
     })
   }
 
   onCountrySelected(country: TableRowSelectEvent){
-    console.log("Selected country:", country.data);
     this.store.dispatch(selectedCountry({country: country.data}))
     this.store.dispatch(hideSidebar())
   }
