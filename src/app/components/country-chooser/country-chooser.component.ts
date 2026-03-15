@@ -23,7 +23,7 @@ import { hideSidebar } from '../../state/actions/sidebar.actions';
 })
 export class CountryChooserComponent {
 
-  @Input() title: string = "Buscar"
+  @Input() title: string = "Search"
   @Output() onChangeInput: EventEmitter<string> = new EventEmitter();
 
   countries$ = this.store.select(selectCountriesList)
