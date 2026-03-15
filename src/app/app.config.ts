@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ROOT_REDUCERS } from './state/app.state';
 import { CountriesEffects } from './state/effects/countries.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { WeathersEffects } from './state/effects/weathers.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +21,8 @@ export const appConfig: ApplicationConfig = {
     ]),
     provideStore(ROOT_REDUCERS),
     provideEffects(
-      CountriesEffects
+      CountriesEffects,
+      WeathersEffects
     ),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     importProvidersFrom(HttpClientModule),

@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { selectSidebarVisible } from './state/selectors/sidebar.selectors';
 import { AsyncPipe } from '@angular/common';
 import { hideSidebar, showSidebar } from './state/actions/sidebar.actions';
+import { selectSelectedCountry } from './state/selectors/countries.selectors';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { hideSidebar, showSidebar } from './state/actions/sidebar.actions';
 })
 export class AppComponent {
   sidebarVisible$ = this.store.select(selectSidebarVisible);
+  selectedCountry$ = this.store.select(selectSelectedCountry);
   title = 'ngrx-store-weather-app';
 
   constructor(private store: Store<AppState>){

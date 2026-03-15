@@ -1,1 +1,26 @@
-<p>weather-info works!</p>
+@if (weatherInformation$ | async; as weather) {
+  <p-table
+          [value]="weather.daily.time"
+          [tableStyle]="{ 'min-width': '50rem' }">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>Day</th>
+                      <th>Weather</th>
+                      <th>Temperature (Min)</th>
+                      <th>Temperature (Max)</th>
+                      <th>Precipitation probability</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-forecast let-rowIndex="rowIndex">
+                  <tr>
+                      <td>{{ forecast |  date:'dd-MM-yyyy' }}</td>
+                      <td><img [src]="weatherService.getForecastImage(weather.daily.weather_code[rowIndex])?.day?.image" [alt]="weatherService.getForecastImage(weather.daily.weather_code[rowIndex])?.day?.description"></td>
+                      <td>{{ weather.daily.temperature_2m_min[rowIndex] }} {{weather.daily_units.temperature_2m_min}}</td>
+                      <td>{{ weather.daily.temperature_2m_max[rowIndex] }} {{weather.daily_units.temperature_2m_max}}</td>
+                      <td>{{ weather.daily.precipitation_probability_max[rowIndex] }} {{weather.daily_units.precipitation_probability_max}}</td>
+                  </tr>
+              </ng-template>
+      </p-table>
+}
+
+<!-- <div>{{ weatherInformation$ | async | json }}</div> -->

@@ -11,6 +11,7 @@
   </ng-template>
   <app-country-chooser/>
 </p-sidebar>
-<h3>Current selected country:</h3> <p-button (onClick)="showSidebar()" label="Select country" icon="pi pi-globe"/>
+<h3>Current selected country: {{ (selectedCountry$ | async)?.name || "None" }}</h3> <p-button (onClick)="showSidebar()" label="Select country" icon="pi pi-globe"/>
 
+<br><br>
 <app-weather-info></app-weather-info>
