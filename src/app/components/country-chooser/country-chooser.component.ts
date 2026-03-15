@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Subject, debounceTime, takeUntil } from 'rxjs';
-import { CountryItemComponent } from '../country-item/country-item.component';
 import { AppState } from '../../state/app.state';
 import { Store } from '@ngrx/store';
 import { filterCountries, selectedCountry } from '../../state/actions/countries.actions';
@@ -16,7 +15,6 @@ import { hideSidebar } from '../../state/actions/sidebar.actions';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CountryItemComponent,
     AsyncPipe,
     TableModule
   ],
