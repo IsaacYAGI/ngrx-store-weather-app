@@ -4,7 +4,7 @@ import { Subject, debounceTime, takeUntil } from 'rxjs';
 import { AppState } from '../../state/app.state';
 import { Store } from '@ngrx/store';
 import { filterCountries, selectedCountry } from '../../state/actions/countries.actions';
-import { selectCountriesList } from '../../state/selectors/countries.selectors';
+import { selectCountriesList, selectCountriesLoading } from '../../state/selectors/countries.selectors';
 import { AsyncPipe } from '@angular/common';
 import { TableModule, TableRowSelectEvent } from 'primeng/table';
 import { GeocodingResponseResult } from '../../interfaces/geocoding.interface';
@@ -27,6 +27,7 @@ export class CountryChooserComponent {
   @Output() onChangeInput: EventEmitter<string> = new EventEmitter();
 
   countries$ = this.store.select(selectCountriesList)
+  countriesLoading$ = this.store.select(selectCountriesLoading)
   selectedCountry: GeocodingResponseResult | null = null;
 
   form!: FormGroup;

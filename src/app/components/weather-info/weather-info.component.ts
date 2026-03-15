@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { AppState } from '../../state/app.state';
 import { Store } from '@ngrx/store';
-import { selectWeatherInformation } from '../../state/selectors/weathers.selectors';
+import { selectWeatherInformation, selectWeatherLoading } from '../../state/selectors/weathers.selectors';
 import { WeatherService } from '../../services/weather.service';
 
 @Component({
@@ -21,6 +21,8 @@ import { WeatherService } from '../../services/weather.service';
 export class WeatherInfoComponent {
 
   weatherInformation$ = this.store.select(selectWeatherInformation)
+  weatherLoading$ = this.store.select(selectWeatherLoading)
+
   constructor(
     private store: Store<AppState>,
     public weatherService: WeatherService

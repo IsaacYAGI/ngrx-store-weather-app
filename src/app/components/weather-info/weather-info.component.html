@@ -1,4 +1,8 @@
-@if (weatherInformation$ | async; as weather) {
+@if (weatherLoading$ | async) {
+  <div><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></div>
+}
+@else {
+  @if (weatherInformation$ | async; as weather) {
   <p-table
           [value]="weather.daily.time"
           [tableStyle]="{ 'min-width': '50rem' }">
@@ -22,5 +26,7 @@
               </ng-template>
       </p-table>
 }
+}
+
 
 <!-- <div>{{ weatherInformation$ | async | json }}</div> -->
