@@ -17,35 +17,6 @@ export class WeatherService {
 
   getWeatherByCoordinates(latitude: number, longitude: number): Observable<WeatherResponse>{
     return this.httpClient.get<WeatherResponse>(`${this.url}&latitude=${latitude}&longitude=${longitude}`)
-//     return of<WeatherResponse>(
-//       {
-//   "latitude": 52.52,
-//   "longitude": 13.419998,
-//   "generationtime_ms": 0.154972076416016,
-//   "utc_offset_seconds": 0,
-//   "timezone": "GMT",
-//   "timezone_abbreviation": "GMT",
-//   "elevation": 38,
-//   "daily_units": {
-//     "time": "iso8601",
-//     "weather_code": "wmo code",
-//     "temperature_2m_max": "°C",
-//     "temperature_2m_min": "°C",
-//     "precipitation_probability_max": "%"
-//   },
-//   "daily": {
-//     "time": [
-//       new Date("2026-03-15"),
-//       new Date("2026-03-16"),
-//       new Date("2026-03-17"),
-//     ],
-//     "weather_code": [61, 80, 3],
-//     "temperature_2m_max": [8.1, 6.6, 12],
-//     "temperature_2m_min": [5.1, 3.2, 2.4],
-//     "precipitation_probability_max": [88, 83, 3]
-//   }
-// }
-//     )
   }
 
   getForecastImage(weatherCode: number){
