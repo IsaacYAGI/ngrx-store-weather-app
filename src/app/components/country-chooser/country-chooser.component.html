@@ -17,6 +17,7 @@
       <th>Name</th>
       <th>Latitude</th>
       <th>Longitude</th>
+      <th>Map</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-country>
@@ -26,6 +27,8 @@
       <td>{{ country.name }}</td>
       <td>{{ country.latitude }}</td>
       <td>{{ country.longitude }}</td>
+      <td><p-button (onClick)="openMap(country.latitude, country.longitude)" label="View on Maps"
+          icon="pi pi-map-marker" /></td>
     </tr>
   </ng-template>
 </p-table>

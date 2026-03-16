@@ -10,12 +10,14 @@ import { TableModule, TableRowSelectEvent } from 'primeng/table';
 import { GeocodingResponseResult } from '../../interfaces/geocoding.interface';
 import { hideSidebar } from '../../state/actions/sidebar.actions';
 import { GeocodingService } from '../../services/geocoding.service';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-country-chooser',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    ButtonModule,
     AsyncPipe,
     TableModule
   ],
@@ -65,6 +67,11 @@ export class CountryChooserComponent {
     this.store.dispatch(selectedCountry({ country: country.data }))
     this.store.dispatch(hideSidebar())
     this.form.reset({ country: "" });
+  }
+
+  openMap(latitude: number, longitude: number) {
+    const url = this.geocodingService.getGoogleMapsURL(latitude, longitude);
+    window.open(url, '_blank');
   }
 
   ngOnDestroy(): void {

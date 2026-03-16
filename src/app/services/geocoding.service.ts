@@ -21,4 +21,8 @@ export class GeocodingService {
   getFlagURL(countryCode: string): string {
     return `https://flagcdn.com/32x24/${countryCode.toLowerCase()}.png`
   }
+
+  getGoogleMapsURL(latitude: number, longitude: number): string {
+    return `https://www.google.com/maps?q=${latitude},${longitude}`;
+  }
 }
