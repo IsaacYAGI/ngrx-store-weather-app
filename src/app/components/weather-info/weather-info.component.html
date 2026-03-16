@@ -17,7 +17,8 @@
     <tr>
       <td>{{ forecast | date:'dd-MM-yyyy' }}</td>
       <td><img [src]="weatherService.getForecastImage(weather.daily.weather_code[rowIndex])?.day?.image"
-          [alt]="weatherService.getForecastImage(weather.daily.weather_code[rowIndex])?.day?.description"></td>
+          [alt]="weatherService.getForecastImage(weather.daily.weather_code[rowIndex])?.day?.description"
+          [title]="weatherService.getForecastImage(weather.daily.weather_code[rowIndex])?.day?.description"></td>
       <td>{{ weather.daily.temperature_2m_min[rowIndex] }} {{weather.daily_units.temperature_2m_min}}</td>
       <td>{{ weather.daily.temperature_2m_max[rowIndex] }} {{weather.daily_units.temperature_2m_max}}</td>
       <td>{{ weather.daily.precipitation_probability_max[rowIndex] }}
