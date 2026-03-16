@@ -3,7 +3,7 @@ import { createEffect, ofType, Actions } from "@ngrx/effects";
 import { mergeMap, map, catchError, EMPTY } from "rxjs";
 import { selectedCountry } from "../actions/countries.actions";
 import { WeatherService } from "../../services/weather.service";
-import { weatherFetchData, weatherFetchDataSuccess } from "../actions/weathers.actions";
+import { cleanWeatherData, weatherFetchData, weatherFetchDataSuccess } from "../actions/weathers.actions";
 
 @Injectable()
 export class WeathersEffects {
@@ -15,8 +15,12 @@ export class WeathersEffects {
         map(weather => (weatherFetchDataSuccess({ weather }))),
         catchError(() => EMPTY)
       ))
-  )
-  );
+  ));
+
+  cleanWeatherData$ = createEffect(() => this.actions$.pipe(
+    ofType(selectedCountry),
+    map(() => (cleanWeatherData())),
+  ));
 
   constructor(
     private actions$: Actions,
