@@ -10,6 +10,7 @@ import { selectSidebarVisible } from './state/selectors/sidebar.selectors';
 import { AsyncPipe } from '@angular/common';
 import { hideSidebar, showSidebar } from './state/actions/sidebar.actions';
 import { selectSelectedCountry } from './state/selectors/countries.selectors';
+import { GeocodingService } from './services/geocoding.service';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,10 @@ export class AppComponent {
   selectedCountry$ = this.store.select(selectSelectedCountry);
   title = 'ngrx-store-weather-app';
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    public geocodingService: GeocodingService
+  ) {
 
   }
 

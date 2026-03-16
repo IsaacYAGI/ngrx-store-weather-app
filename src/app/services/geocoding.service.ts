@@ -17,4 +17,8 @@ export class GeocodingService {
   getCountriesByName(name: string): Observable<GeocodingResponse> {
     return this.httpClient.get<GeocodingResponse>(this.url + name)
   }
+
+  getFlagURL(countryCode: string): string {
+    return `https://flagcdn.com/32x24/${countryCode.toLowerCase()}.png`
+  }
 }

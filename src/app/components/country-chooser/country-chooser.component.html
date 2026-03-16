@@ -21,7 +21,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-country>
     <tr [pSelectableRow]="country">
-      <td><img [src]="'https://flagcdn.com/32x24/' + country.country_code.toLowerCase() + '.png'" [alt]="country.name">
+      <td><img [src]="geocodingService.getFlagURL(country.country_code)" [alt]="country.name">
       </td>
       <td>{{ country.name }}</td>
       <td>{{ country.latitude }}</td>

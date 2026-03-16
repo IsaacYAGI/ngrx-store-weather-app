@@ -9,6 +9,7 @@ import { AsyncPipe } from '@angular/common';
 import { TableModule, TableRowSelectEvent } from 'primeng/table';
 import { GeocodingResponseResult } from '../../interfaces/geocoding.interface';
 import { hideSidebar } from '../../state/actions/sidebar.actions';
+import { GeocodingService } from '../../services/geocoding.service';
 
 @Component({
   selector: 'app-country-chooser',
@@ -35,7 +36,8 @@ export class CountryChooserComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    public geocodingService: GeocodingService
   ) {
     this.createForm()
     this.subscribeToForm()

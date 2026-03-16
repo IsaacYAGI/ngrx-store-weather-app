@@ -6,8 +6,14 @@
   </ng-template>
   <app-country-chooser />
 </p-sidebar>
-<h3>Current selected place: {{ (selectedCountry$ | async)?.name || "None" }}</h3> <p-button (onClick)="showSidebar()"
-  label="Select place" icon="pi pi-globe" />
+<h3>
+  Current selected place: {{ (selectedCountry$ | async)?.name || "None" }}
+  @if ((selectedCountry$ | async)?.country_code) {
+  <img [src]="geocodingService.getFlagURL((selectedCountry$ | async)!.country_code)"
+    [alt]="(selectedCountry$ | async)?.name">
+  }
+</h3>
+<p-button (onClick)="showSidebar()" label="Select place" icon="pi pi-globe" />
 
 <br><br>
 <app-weather-info></app-weather-info>
