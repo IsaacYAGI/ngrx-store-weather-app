@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { CountriesState } from "../interfaces/countries.state.interface";
-import { filterCountries, filterCountriesSuccess, selectedCountry } from "../actions/countries.actions";
+import { cleanFilterCountries, filterCountries, filterCountriesSuccess, selectedCountry } from "../actions/countries.actions";
 
 const initialState: CountriesState = {
   countries: [],
@@ -14,4 +14,6 @@ export const countriesReducer = createReducer(
   on(filterCountries, (state, payload) => ({ ...state, loading: true, query: payload.name })),
   on(filterCountriesSuccess, (state, payload) => ({ ...state, loading: false, countries: payload.countries })),
   on(selectedCountry, (state, payload) => ({ ...state, selectedCountry: payload.country })),
+  on(cleanFilterCountries, (state) => ({ ...state, countries: [], query: "" })),
+
 );

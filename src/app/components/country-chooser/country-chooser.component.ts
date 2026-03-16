@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Subject, debounceTime, takeUntil } from 'rxjs';
+import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 import { AppState } from '../../state/app.state';
 import { Store } from '@ngrx/store';
 import { filterCountries, selectedCountry } from '../../state/actions/countries.actions';
@@ -50,6 +50,7 @@ export class CountryChooserComponent {
   subscribeToForm() {
     this.form.valueChanges.pipe(
       debounceTime(1500),
+      filter(value => value.country.length > 2),
       takeUntil(this.destroy$)
     )
       .subscribe(value => {
@@ -61,6 +62,7 @@ export class CountryChooserComponent {
   onCountrySelected(country: TableRowSelectEvent) {
     this.store.dispatch(selectedCountry({ country: country.data }))
     this.store.dispatch(hideSidebar())
+    this.form.reset({ country: "" });
   }
 
   ngOnDestroy(): void {
