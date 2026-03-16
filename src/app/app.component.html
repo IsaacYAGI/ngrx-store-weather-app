@@ -10,7 +10,7 @@
   Current selected place: {{ (selectedCountry$ | async)?.name || "None" }}
   @if ((selectedCountry$ | async)?.country_code) {
   <img [src]="geocodingService.getFlagURL((selectedCountry$ | async)!.country_code)"
-    [alt]="(selectedCountry$ | async)?.name">
+    [alt]="(selectedCountry$ | async)?.name" [title]="(selectedCountry$ | async)?.country">
   }
 </h3>
 <p-button (onClick)="showSidebar()" label="Select place" icon="pi pi-globe" />
