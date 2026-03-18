@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { createEffect, ofType, Actions } from "@ngrx/effects";
-import { mergeMap, map, catchError, EMPTY } from "rxjs";
-import { cleanFilterCountries, filterCountries, filterCountriesSuccess, selectedCountry } from "../actions/countries.actions";
+import { map, catchError, EMPTY, switchMap } from "rxjs";
+import { filterCountries, filterCountriesSuccess, selectedCountry } from "../actions/countries.actions";
 import { GeocodingService } from "../../services/geocoding.service";
 import { weatherFetchData } from "../actions/weathers.actions";
 
@@ -10,7 +10,7 @@ export class CountriesEffects {
 
   loadCountries$ = createEffect(() => this.actions$.pipe(
     ofType(filterCountries),
-    mergeMap(({ name }) => this.apiService.getCountriesByName(name)
+    switchMap(({ name }) => this.apiService.getCountriesByName(name)
       .pipe(
         map(countries => (filterCountriesSuccess({ countries: countries.results }))),
         catchError(() => EMPTY)
@@ -20,12 +20,6 @@ export class CountriesEffects {
   selectedCountry$ = createEffect(() => this.actions$.pipe(
     ofType(selectedCountry),
     map(countrySelected => (weatherFetchData({ latitude: countrySelected.country.latitude, longitude: countrySelected.country.longitude }))),
-  ));
-
-
-  cleanCountries$ = createEffect(() => this.actions$.pipe(
-    ofType(selectedCountry),
-    map(() => (cleanFilterCountries())),
   ));
 
   constructor(
